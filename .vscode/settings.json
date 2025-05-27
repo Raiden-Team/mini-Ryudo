@@ -1,0 +1,39 @@
+{
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.eol": "\n",
+    "files.encoding": "utf8",
+
+    "[c]": {
+        "editor.formatOnSave": true,
+    },
+
+    "[makefile]": {
+        "editor.insertSpaces": false,
+    },
+
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false,
+        "files.trimFinalNewlines": false,
+    },
+    "files.associations": {
+        "led.h": "c",
+        "stdint.h": "c",
+        "flag.h": "c",
+        "fsm_flag.h": "c",
+        "fsm_main.h": "c",
+        "distance_sensors.h": "c",
+        "fsm_control.h": "c",
+        "motors.h": "c",
+        "stdio.h": "c",
+        "gpio.h": "c",
+        "line_sensors.h": "c",
+        "opponent.h": "c",
+        "infrared_receiver.h": "c"
+    },
+}
