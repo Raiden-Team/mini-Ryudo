@@ -3,13 +3,13 @@
  *
  * @brief Main function
  */
-#include "mcu.h"
+#include "adapter_mcu.h"
 #include "service_rc.h"
 
 /*****************************************
  * DEFINES
  *****************************************/
-#define STARTUP_DELAY 3000
+#define MAIN_STARTUP_DELAY (3000)
 
 /*****************************************
  * GLOBAL VARIABLES
@@ -21,11 +21,11 @@
 
 int main(void) {
     // INIT modules
-    mcu_init();
+    adapter_mcu_init();
     service_rc_init();
 
     // Delay - to avoid motor movement without control
-    HAL_Delay(STARTUP_DELAY);
+    HAL_Delay(MAIN_STARTUP_DELAY);
 
     // Main Loop
     for (;;) {

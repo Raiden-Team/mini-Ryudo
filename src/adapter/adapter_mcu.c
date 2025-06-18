@@ -4,16 +4,13 @@
  * @brief MCU related
  */
 
-#include "mcu.h"
+#include "adapter_mcu.h"
 
 /*****************************************
- * INITIALIZATION MODULES
+ * Public Functions Prototypes
  *****************************************/
 
-void mcu_init(void) {
-    /*
-     * Standard initialization
-     */
+void adapter_mcu_init(void) {
     HAL_Init();
     SystemClock_Config();
     MX_GPIO_Init();

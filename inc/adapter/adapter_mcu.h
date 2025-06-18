@@ -13,20 +13,24 @@
 #include <stdint.h>
 
 /*****************************************
- * DEFINES
+ * Public Macros
  *****************************************/
 
+#define reset_timer(ticks) (ticks = HAL_GetTick())
+#define get_timer(ticks) (HAL_GetTick() - ticks)
+
 /*****************************************
- * INITIALIZATION MODULES
+ * Public Functions Prototypes
  *****************************************/
 
 /**
  * @brief Initializes MCU and some peripherals.
  */
-void mcu_init(void);
+void adapter_mcu_init(void);
 
 /**
  * @brief Initializes System Clock.
+ *
  * @note  Defined by cube.
  */
 void SystemClock_Config(void);
