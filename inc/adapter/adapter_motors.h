@@ -31,7 +31,7 @@ typedef enum motor_direction {
 } motor_direction_enum;
 
 /**
- * @brief motor adapterstruct
+ * @brief motor adapter struct
  */
 typedef struct adapter_motors {
     motor_direction_enum direction_right;
@@ -55,7 +55,6 @@ void adapter_motors_init(void);
  *
  * @param motors_command pointer to motors_command struct with the PWM's duty cycle for both sides
  */
-
 void adapter_motors_control(adapter_motors_type* adapter_motors);
 
-#endif // __MOTORS_COMMAND_SENDER_ADAPTER_H__
+#endif // __ADAPTER_MOTORS_H__

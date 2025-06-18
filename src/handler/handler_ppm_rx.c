@@ -27,7 +27,7 @@ void handler_ppm_rx_init(handler_ppm_rx_type* handler_ppm_rx) {
     }
 }
 
-void handler_ppm_rx_callback(handler_ppm_rx_type* handler_ppm_rx) {
+void handler_ppm_rx_GPIO_EXTI_Callback(handler_ppm_rx_type* handler_ppm_rx) {
     //
     if (HAL_GPIO_ReadPin(handler_ppm_rx->gpio_port, handler_ppm_rx->gpio_pin)) {
         handler_ppm_rx->tick_start = __HAL_TIM_GET_COUNTER(handler_ppm_rx->htim);

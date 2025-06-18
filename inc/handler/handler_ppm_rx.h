@@ -45,10 +45,10 @@ typedef struct handler_ppm_rx {
 void handler_ppm_rx_init(handler_ppm_rx_type* handler_ppm_rx);
 
 /**
- * @brief PPM Callback Handling Function
+ * @brief PPM GPIO EXTI Callback Handling Function
  *
  * @param ppm_rx Pointer to PWM receiver handler.
  */
-void handler_ppm_rx_callback(handler_ppm_rx_type* handler_ppm_rx);
+void handler_ppm_rx_GPIO_EXTI_Callback(handler_ppm_rx_type* handler_ppm_rx);
 
 #endif // __HANDLER_PPM_RX_H__

@@ -31,22 +31,4 @@ void mcu_init(void);
  */
 void SystemClock_Config(void);
 
-/**
- * @brief Initializes motors.
- * @note
- */
-void motors_init();
-
-/**
- * @brief Initializes ppm receiver (left channel).
- * @note
- */
-void ppm_rx_init_left();
-
-/**
- * @brief Initializes ppm receiver (right channel).
- * @note
- */
-void ppm_rx_init_right();
-
 #endif // __INIT_H__
