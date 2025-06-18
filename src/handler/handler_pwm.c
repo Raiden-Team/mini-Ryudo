@@ -13,8 +13,6 @@
 /*****************************************
  * Private Defines
  *****************************************/
-#define DUTY_CYCLE_MAX (1000)
-#define DUTY_CYCLE_MIN (0)
 
 /*****************************************
  * Public Functions Prototypes
@@ -29,10 +27,8 @@ void handler_pwm_command(handler_pwm_type* handler_pwm, uint16_t duty_cycle) {
     // Map Duty Cycle
     uint16_t duty_cycle_corrected = duty_cycle;
 
-    if (duty_cycle > DUTY_CYCLE_MAX) {
-        duty_cycle_corrected = DUTY_CYCLE_MAX;
-    } else if (duty_cycle < DUTY_CYCLE_MIN) {
-        duty_cycle_corrected = DUTY_CYCLE_MIN;
+    if (duty_cycle > MOTOR_DUTY_CYCLE_MAX) {
+        duty_cycle_corrected = MOTOR_DUTY_CYCLE_MAX;
     }
 
     // Set Duty Cycle

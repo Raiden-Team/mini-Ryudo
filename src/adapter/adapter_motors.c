@@ -76,38 +76,38 @@ void adapter_motors_control(adapter_motors_type* adapter_motors) {
     // LEFT
     // BLOCK
     if (adapter_motors->direction_left == MOTOR_DIRECTION_BLOCK) {
-        handler_pwm_command(&handler_pwm_left_1, 1000);
-        handler_pwm_command(&handler_pwm_left_2, 1000);
+        handler_pwm_command(&handler_pwm_left_1, MOTOR_DUTY_CYCLE_MAX);
+        handler_pwm_command(&handler_pwm_left_2, MOTOR_DUTY_CYCLE_MAX);
     }
 
     // FORWARD
     else if (adapter_motors->direction_left == MOTOR_DIRECTION_FORWARD) {
         handler_pwm_command(&handler_pwm_left_1, adapter_motors->command_left);
-        handler_pwm_command(&handler_pwm_left_2, 0);
+        handler_pwm_command(&handler_pwm_left_2, MOTOR_DUTY_CYCLE_MIN);
     }
 
     // BACKWARDS
     else if (adapter_motors->direction_left == MOTOR_DIRECTION_BACKWARDS) {
-        handler_pwm_command(&handler_pwm_left_1, 0);
+        handler_pwm_command(&handler_pwm_left_1, MOTOR_DUTY_CYCLE_MIN);
         handler_pwm_command(&handler_pwm_left_2, adapter_motors->command_left);
     }
 
     // RIGHT
     // BLOCK
     if (adapter_motors->direction_right == MOTOR_DIRECTION_BLOCK) {
-        handler_pwm_command(&handler_pwm_right_1, 1000);
-        handler_pwm_command(&handler_pwm_right_2, 1000);
+        handler_pwm_command(&handler_pwm_right_1, MOTOR_DUTY_CYCLE_MAX);
+        handler_pwm_command(&handler_pwm_right_2, MOTOR_DUTY_CYCLE_MAX);
     }
 
     // FORWARD
     else if (adapter_motors->direction_right == MOTOR_DIRECTION_FORWARD) {
         handler_pwm_command(&handler_pwm_right_1, adapter_motors->command_right);
-        handler_pwm_command(&handler_pwm_right_2, 0);
+        handler_pwm_command(&handler_pwm_right_2, MOTOR_DUTY_CYCLE_MIN);
     }
 
     // BACKWARDS
     else if (adapter_motors->direction_right == MOTOR_DIRECTION_BACKWARDS) {
-        handler_pwm_command(&handler_pwm_right_1, 0);
+        handler_pwm_command(&handler_pwm_right_1, MOTOR_DUTY_CYCLE_MIN);
         handler_pwm_command(&handler_pwm_right_2, adapter_motors->command_right);
     }
 }

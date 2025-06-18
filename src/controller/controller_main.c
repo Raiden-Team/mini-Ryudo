@@ -78,6 +78,7 @@ void controller_main_state_init(controller_main_state_type main_next_state) {
             break;
 
         case MAIN_RUN:
+            service_rc_reset();
             break;
     }
 }
