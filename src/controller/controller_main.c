@@ -16,7 +16,7 @@
  * Private Defines
  *****************************************/
 
-#define MAIN_IDLE_DELAY (3000)
+#define MAIN_IDLE_INIT_DELAY (3000)
 
 /*****************************************
  * Private Types
@@ -50,8 +50,11 @@ controller_main_type controller_main = {
  *****************************************/
 
 void controller_main_init(void) {
+    // Initilization
     adapter_mcu_init();
     service_rc_init();
+
+    // Reset
     controller_main_reset();
 }
 
@@ -59,6 +62,9 @@ void controller_main_reset(void) {
     controller_main.state_current = MAIN_IDLE;
     controller_main.state_previous = MAIN_IDLE;
     reset_timer(controller_main.state_timer);
+
+    // Init MAIN_IDLE
+    controller_main_state_init(MAIN_IDLE);
 }
 
 void controller_main_state_init(controller_main_state_type main_next_state) {
@@ -68,6 +74,7 @@ void controller_main_state_init(controller_main_state_type main_next_state) {
 
     switch (main_next_state) {
         case MAIN_IDLE:
+            HAL_Delay(MAIN_IDLE_INIT_DELAY);
             break;
 
         case MAIN_RUN:
@@ -87,9 +94,7 @@ void controller_main_state_run(void) {
             adapter_motors_control(&adapter_motors_main);
 
             // TRANSITION
-            if (get_timer(controller_main.state_timer) > MAIN_IDLE_DELAY) {
-                controller_main_state_init(MAIN_RUN);
-            }
+            controller_main_state_init(MAIN_RUN);
 
             break;
 
