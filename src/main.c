@@ -4,19 +4,17 @@
  * @brief Main function
  */
 #include "adapter_mcu.h"
+#include "adapter_rc_receiver.h"
 #include "service_rc.h"
 
 /*****************************************
- * DEFINES
+ * Private Variables
  *****************************************/
+
 #define MAIN_STARTUP_DELAY (3000)
 
 /*****************************************
- * GLOBAL VARIABLES
- *****************************************/
-
-/*****************************************
- * MAIN LOOP
+ * Main Function
  *****************************************/
 
 int main(void) {
@@ -31,4 +29,12 @@ int main(void) {
     for (;;) {
         service_rc_run();
     }
+}
+
+/*****************************************
+ * Callbacks
+ *****************************************/
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+    adapter_rc_receiver_GPIO_EXTI_Callback(GPIO_Pin);
 }
