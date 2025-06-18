@@ -15,7 +15,6 @@
 #include <stdbool.h>
 
 #include "adapter_motors.h"
-#include "tim.h"
 
 /*****************************************
  * Public Types

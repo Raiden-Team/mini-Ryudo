@@ -3,15 +3,8 @@
  *
  * @brief Main function
  */
-#include "adapter_mcu.h"
+#include "controller_main.h"
 #include "adapter_rc_receiver.h"
-#include "service_rc.h"
-
-/*****************************************
- * Private Variables
- *****************************************/
-
-#define MAIN_STARTUP_DELAY (3000)
 
 /*****************************************
  * Main Function
@@ -19,15 +12,11 @@
 
 int main(void) {
     // INIT modules
-    adapter_mcu_init();
-    service_rc_init();
-
-    // Delay - to avoid motor movement without control
-    HAL_Delay(MAIN_STARTUP_DELAY);
+    controller_main_init();
 
     // Main Loop
     for (;;) {
-        service_rc_run();
+        controller_main_run();
     }
 }
 

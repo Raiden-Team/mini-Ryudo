@@ -15,7 +15,6 @@
 #include <stdbool.h>
 
 #include "handler_pwm.h"
-#include "tim.h"
 
 /*****************************************
  * Public Types

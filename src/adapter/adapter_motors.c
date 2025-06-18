@@ -12,15 +12,11 @@
 #include "handler_pwm.h"
 
 /*****************************************
- * Public Defines
+ * Private Defines
  *****************************************/
 
 #define MOTOR_LEFT_SETUP (0)
 #define MOTOR_RIGHT_SETUP (1)
-
-/*****************************************
- * Public Variables
- *****************************************/
 
 /*****************************************
  * Private Variables
