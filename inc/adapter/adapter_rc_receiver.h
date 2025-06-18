@@ -38,6 +38,11 @@ typedef struct adapter_rc_receiver {
 void adapter_rc_receiver_init(void);
 
 /**
+ * @brief reset the rc receiver adapter
+ */
+void adapter_rc_receiver_reset(void);
+
+/**
  * @brief rc receiver GPIO_EXTI_Callback
  *
  * @param GPIO_Pin GPIO Pin

@@ -34,6 +34,7 @@ typedef struct controller_main {
 /*****************************************
  * Private Variables
  *****************************************/
+
 adapter_motors_type adapter_motors_main = {
     .command_left = 0,
     .command_right = 0,
@@ -50,6 +51,7 @@ controller_main_type controller_main = {
 
 void controller_main_init(void) {
     adapter_mcu_init();
+    service_rc_init();
     controller_main_reset();
 }
 
@@ -69,7 +71,6 @@ void controller_main_state_init(controller_main_state_type main_next_state) {
             break;
 
         case MAIN_RUN:
-            service_rc_init();
             break;
     }
 }
