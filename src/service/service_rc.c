@@ -43,6 +43,8 @@ void service_rc_reset(void) {
 
     // Set ADAPTER MOTORS
     adapter_motors_init();
+    adapter_motors_rc.command_left = 0;
+    adapter_motors_rc.command_right = 0;
 }
 
 void service_rc_run(void) {
