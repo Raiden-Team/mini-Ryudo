@@ -30,7 +30,7 @@ typedef struct handler_ppm_rx {
 
     uint16_t           tick_start;
     uint16_t           tick_end;
-    uint16_t           tick;
+    volatile uint16_t  tick;
 } handler_ppm_rx_type;
 
 /*****************************************

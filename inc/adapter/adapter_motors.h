@@ -51,9 +51,9 @@ typedef struct adapter_motors {
 void adapter_motors_init(void);
 
 /**
- * @brief Control the motors command
+ * @brief send command to motors
  *
- * @param motors_command pointer to motors_command struct with the PWM's duty cycle for both sides
+ * @param adapter_motors pointer to motors_command struct with the PWM's duty cycle for both sides
  */
 void adapter_motors_control(adapter_motors_type* adapter_motors);
 
