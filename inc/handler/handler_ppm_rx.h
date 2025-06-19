@@ -28,9 +28,10 @@ typedef struct handler_ppm_rx {
 
     TIM_HandleTypeDef* htim;
 
-    uint16_t           tick_start;
-    uint16_t           tick_end;
-    volatile uint16_t  tick;
+    uint16_t           tick_rising_edge;
+    uint16_t           tick_falling_edge;
+    volatile uint16_t  high_ticks;
+    volatile uint16_t  low_ticks;
 } handler_ppm_rx_type;
 
 /*****************************************
