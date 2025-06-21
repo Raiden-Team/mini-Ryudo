@@ -24,10 +24,19 @@
  * Public Functions Prototypes
  *****************************************/
 
+/**
+ * @brief initialize radio-control service
+ */
 void service_rc_init(void);
 
+/**
+ * @brief reset radio-control service
+ */
 void service_rc_reset(void);
 
+/**
+ * @brief run radio-control service
+ */
 void service_rc_run(void);
 
 #endif // __SERVICE_RC_H__

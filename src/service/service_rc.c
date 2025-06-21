@@ -62,7 +62,7 @@ void service_rc_run(void) {
         adapter_motors_service_rc.direction_left = MOTOR_DIRECTION_FORWARD;
     } else {
         adapter_motors_service_rc.command_left = 0;
-        adapter_motors_service_rc.direction_left = MOTOR_DIRECTION_FORWARD;
+        adapter_motors_service_rc.direction_left = MOTOR_DIRECTION_BACKWARDS;
     }
 
     if ((command_right < 0) && (command_right > -RC_COMMAND_DEAD_ZONE)) {
@@ -73,7 +73,7 @@ void service_rc_run(void) {
         adapter_motors_service_rc.direction_right = MOTOR_DIRECTION_FORWARD;
     } else {
         adapter_motors_service_rc.command_right = 0;
-        adapter_motors_service_rc.direction_right = MOTOR_DIRECTION_FORWARD;
+        adapter_motors_service_rc.direction_right = MOTOR_DIRECTION_BACKWARDS;
     }
 
     adapter_motors_control(&adapter_motors_service_rc);
