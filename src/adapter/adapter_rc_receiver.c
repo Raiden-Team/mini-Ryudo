@@ -37,6 +37,10 @@ adapter_rc_receiver_type adapter_rc_receiver = {
  *****************************************/
 
 void adapter_rc_receiver_init(void) {
+    // Init Timers
+    MX_TIM2_Init();
+    MX_TIM3_Init();
+
     // Init PPM Handler
     handler_ppm_rx_init(&handler_ppm_rx_left);
     handler_ppm_rx_init(&handler_ppm_rx_right);

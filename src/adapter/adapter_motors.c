@@ -65,9 +65,12 @@ void adapter_motors_init(void) {
         handler_pwm_right_2.tim_channel = TIM_CHANNEL_3;
     }
 
+    // Init Timers
+    MX_TIM1_Init();
+
     // Init PWM HANDLER
     handler_pwm_init(&handler_pwm_left_1);
-    handler_pwm_init(&handler_pwm_left_1);
+    handler_pwm_init(&handler_pwm_left_2);
     handler_pwm_init(&handler_pwm_right_1);
     handler_pwm_init(&handler_pwm_right_2);
 }

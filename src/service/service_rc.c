@@ -54,10 +54,10 @@ void service_rc_run(void) {
     int16_t command_right = adapter_rc_receiver_get_command_right();
 
     // Set MOTORS ADAPTER CONTROL
-    if ((command_left < 0) && (command_left > -RC_COMMAND_DEAD_ZONE)) {
+    if (command_left < -RC_COMMAND_DEAD_ZONE) {
         adapter_motors_service_rc.command_left = -command_left;
         adapter_motors_service_rc.direction_left = MOTOR_DIRECTION_BACKWARDS;
-    } else if ((command_left > 0) && (command_left < RC_COMMAND_DEAD_ZONE)) {
+    } else if (command_left > RC_COMMAND_DEAD_ZONE) {
         adapter_motors_service_rc.command_left = command_left;
         adapter_motors_service_rc.direction_left = MOTOR_DIRECTION_FORWARD;
     } else {
@@ -65,10 +65,10 @@ void service_rc_run(void) {
         adapter_motors_service_rc.direction_left = MOTOR_DIRECTION_BACKWARDS;
     }
 
-    if ((command_right < 0) && (command_right > -RC_COMMAND_DEAD_ZONE)) {
+    if (command_right < -RC_COMMAND_DEAD_ZONE) {
         adapter_motors_service_rc.command_right = -command_right;
         adapter_motors_service_rc.direction_right = MOTOR_DIRECTION_BACKWARDS;
-    } else if ((command_right > 0) && (command_right < RC_COMMAND_DEAD_ZONE)) {
+    } else if (command_right > RC_COMMAND_DEAD_ZONE) {
         adapter_motors_service_rc.command_right = command_right;
         adapter_motors_service_rc.direction_right = MOTOR_DIRECTION_FORWARD;
     } else {
