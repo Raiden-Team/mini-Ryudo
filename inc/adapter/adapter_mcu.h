@@ -13,40 +13,26 @@
 #include <stdint.h>
 
 /*****************************************
- * DEFINES
+ * Public Macros
  *****************************************/
 
+#define reset_timer(ticks) (ticks = HAL_GetTick())
+#define get_timer(ticks) (HAL_GetTick() - ticks)
+
 /*****************************************
- * INITIALIZATION MODULES
+ * Public Functions Prototypes
  *****************************************/
 
 /**
  * @brief Initializes MCU and some peripherals.
  */
-void mcu_init(void);
+void adapter_mcu_init(void);
 
 /**
  * @brief Initializes System Clock.
+ *
  * @note  Defined by cube.
  */
 void SystemClock_Config(void);
-
-/**
- * @brief Initializes motors.
- * @note
- */
-void motors_init();
-
-/**
- * @brief Initializes ppm receiver (left channel).
- * @note
- */
-void ppm_rx_init_left();
-
-/**
- * @brief Initializes ppm receiver (right channel).
- * @note
- */
-void ppm_rx_init_right();
 
 #endif // __INIT_H__

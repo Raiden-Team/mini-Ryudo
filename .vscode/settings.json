@@ -34,6 +34,7 @@
         "gpio.h": "c",
         "line_sensors.h": "c",
         "opponent.h": "c",
-        "infrared_receiver.h": "c"
+        "infrared_receiver.h": "c",
+        "service_rc.h": "c"
     },
 }
