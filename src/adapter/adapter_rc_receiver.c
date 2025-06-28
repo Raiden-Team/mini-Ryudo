@@ -12,6 +12,14 @@
 #include "handler_ppm_rx.h"
 
 /*****************************************
+ * Private Defines
+ *****************************************/
+
+ #define RC_ZERO_PERIOD (1500)
+ #define RC_MAX_PERIOD (2000)
+ #define MOTOR_DUTY_CYCLE_RANGE (1000)
+
+/*****************************************
  * Private Variables
  *****************************************/
 
@@ -59,13 +67,15 @@ void adapter_rc_receiver_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     // LEFT
     if (GPIO_Pin == handler_ppm_rx_left.gpio_pin) {
         handler_ppm_rx_GPIO_EXTI_Callback(&handler_ppm_rx_left);
-        adapter_rc_receiver.command_left = (handler_ppm_rx_left.high_ticks - 1500) * (200) / 100;
+        adapter_rc_receiver.command_left = (handler_ppm_rx_left.high_ticks - RC_ZERO_PERIOD) * (RC_MAX_PERIOD) /
+                                           (MOTOR_DUTY_CYCLE_RANGE);
     }
 
     // RIGHT
     else if (GPIO_Pin == handler_ppm_rx_right.gpio_pin) {
         handler_ppm_rx_GPIO_EXTI_Callback(&handler_ppm_rx_right);
-        adapter_rc_receiver.command_right = (handler_ppm_rx_right.high_ticks - 1500) * (200) / 100;
+        adapter_rc_receiver.command_right = (handler_ppm_rx_right.high_ticks - RC_ZERO_PERIOD) * (RC_MAX_PERIOD) /
+                                            (MOTOR_DUTY_CYCLE_RANGE);
     }
 }
 

@@ -31,10 +31,6 @@ adapter_motors_type adapter_motors_service_rc = {
  *****************************************/
 
 void service_rc_init(void) {
-    // Initialization
-    adapter_rc_receiver_init();
-    adapter_motors_init();
-
     // Reset
     service_rc_reset();
 }

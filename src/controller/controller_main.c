@@ -9,8 +9,10 @@
  */
 
 #include "controller_main.h"
-#include "service_rc.h"
 #include "adapter_mcu.h"
+#include "adapter_motors.h"
+#include "adapter_rc_receiver.h"
+#include "service_rc.h"
 
 /*****************************************
  * Private Defines
@@ -50,10 +52,6 @@ controller_main_type controller_main = {
  *****************************************/
 
 void controller_main_init(void) {
-    // Initilization
-    adapter_mcu_init();
-    service_rc_init();
-
     // Reset
     controller_main_reset();
 }
@@ -75,9 +73,17 @@ void controller_main_state_init(controller_main_state_type main_next_state) {
     switch (main_next_state) {
         case MAIN_IDLE:
             HAL_Delay(MAIN_IDLE_INIT_DELAY);
+
+            // Initialization
+            adapter_mcu_init();
+            adapter_motors_init();
+            adapter_rc_receiver_init();
+            service_rc_init();
             break;
 
         case MAIN_RUN:
+
+            // Initialization
             service_rc_reset();
             break;
     }
