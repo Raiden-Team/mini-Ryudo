@@ -9,27 +9,24 @@
  */
 
 #include "adapter_rc_receiver.h"
-#include "handler_ppm_rx.h"
+#include "handler_pulse_rx.h"
+#include "protocol_ppm.h"
 
 /*****************************************
  * Private Defines
  *****************************************/
 
- #define RC_ZERO_PERIOD (1500)
- #define RC_MAX_PERIOD (2000)
- #define MOTOR_DUTY_CYCLE_RANGE (1000)
-
 /*****************************************
  * Private Variables
  *****************************************/
 
-handler_ppm_rx_type handler_ppm_rx_left = {
+handler_pulse_rx_type handler_pulse_rx_ppm_left = {
     .gpio_port = GPIOA,
     .gpio_pin = GPIO_PIN_15,
     .htim = &htim2,
 };
 
-handler_ppm_rx_type handler_ppm_rx_right = {
+handler_pulse_rx_type handler_pulse_rx_ppm_right = {
     .gpio_port = GPIOB,
     .gpio_pin = GPIO_PIN_3,
     .htim = &htim3,
@@ -49,9 +46,9 @@ void adapter_rc_receiver_init(void) {
     MX_TIM2_Init();
     MX_TIM3_Init();
 
-    // Init PPM Handler
-    handler_ppm_rx_init(&handler_ppm_rx_left);
-    handler_ppm_rx_init(&handler_ppm_rx_right);
+    // Init pulse handler
+    handler_pulse_rx_init(&handler_pulse_rx_ppm_left);
+    handler_pulse_rx_init(&handler_pulse_rx_ppm_right);
 
     // Reset
     adapter_rc_receiver_reset();
@@ -65,17 +62,22 @@ void adapter_rc_receiver_reset(void) {
 
 void adapter_rc_receiver_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     // LEFT
-    if (GPIO_Pin == handler_ppm_rx_left.gpio_pin) {
-        handler_ppm_rx_GPIO_EXTI_Callback(&handler_ppm_rx_left);
-        adapter_rc_receiver.command_left = (handler_ppm_rx_left.high_ticks - RC_ZERO_PERIOD) * (RC_MAX_PERIOD) /
-                                           (MOTOR_DUTY_CYCLE_RANGE);
+    if (GPIO_Pin == handler_pulse_rx_ppm_left.gpio_pin) {
+        handler_pulse_rx_GPIO_EXTI_Callback(&handler_pulse_rx_ppm_left);
+
+        // handling ppm protocol
+        adapter_rc_receiver.command_left = (handler_pulse_rx_ppm_left.high_ticks - PPM_ZERO_PERIOD) * (PPM_MAX_PERIOD) /
+                                           (MOTOR_DUTY_CYCLE_MAX);
     }
 
     // RIGHT
-    else if (GPIO_Pin == handler_ppm_rx_right.gpio_pin) {
-        handler_ppm_rx_GPIO_EXTI_Callback(&handler_ppm_rx_right);
-        adapter_rc_receiver.command_right = (handler_ppm_rx_right.high_ticks - RC_ZERO_PERIOD) * (RC_MAX_PERIOD) /
-                                            (MOTOR_DUTY_CYCLE_RANGE);
+    else if (GPIO_Pin == handler_pulse_rx_ppm_right.gpio_pin) {
+        handler_pulse_rx_GPIO_EXTI_Callback(&handler_pulse_rx_ppm_right);
+
+        // handling ppm protocol
+        adapter_rc_receiver.command_right = (handler_pulse_rx_ppm_right.high_ticks - PPM_ZERO_PERIOD) *
+                                            (PPM_MAX_PERIOD) /
+                                            (MOTOR_DUTY_CYCLE_MAX);
     }
 }
 
