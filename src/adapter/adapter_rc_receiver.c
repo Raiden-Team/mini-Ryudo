@@ -16,6 +16,9 @@
  * Private Defines
  *****************************************/
 
+#define RC_MAX_COMMAND (1000)
+#define RC_MIN_COMMAND (-1000)
+
 /*****************************************
  * Private Variables
  *****************************************/
@@ -66,8 +69,9 @@ void adapter_rc_receiver_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
         handler_pulse_rx_GPIO_EXTI_Callback(&handler_pulse_rx_ppm_left);
 
         // handling ppm protocol
-        adapter_rc_receiver.command_left = (handler_pulse_rx_ppm_left.high_ticks - PPM_ZERO_PERIOD) * (PPM_MAX_PERIOD) /
-                                           (MOTOR_DUTY_CYCLE_MAX);
+        adapter_rc_receiver.command_left = (handler_pulse_rx_ppm_left.high_ticks - PPM_ZERO_PERIOD) *
+                                           (RC_MAX_COMMAND - RC_MIN_COMMAND) /
+                                           (PPM_MAX_PERIOD - PPM_MIN_PERIOD);
     }
 
     // RIGHT
@@ -76,8 +80,8 @@ void adapter_rc_receiver_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
         // handling ppm protocol
         adapter_rc_receiver.command_right = (handler_pulse_rx_ppm_right.high_ticks - PPM_ZERO_PERIOD) *
-                                            (PPM_MAX_PERIOD) /
-                                            (MOTOR_DUTY_CYCLE_MAX);
+                                            (RC_MAX_COMMAND - RC_MIN_COMMAND) /
+                                            (PPM_MAX_PERIOD - PPM_MIN_PERIOD);
     }
 }
 
